@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ♡</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="particles"></canvas>
+
+<audio id="music" loop preload="auto"></audio>
+
+<main>
+  <!-- PAGE 1 -->
+  <section id="giftPage" class="page active">
+    <div class="gift-wrap" id="giftButton">
+      <img src="assets/giftbox.png" class="gift" alt="gift">
+      <h1 id="introTitle">For you, my baby.</h1>
+      <p id="introHint">(tap to open)</p>
+    </div>
+  </section>
+
+  <!-- PAGE 2 -->
+  <section id="storyPage" class="page">
+    <img src="assets/flowers/flower-1.png" class="corner-flower left" alt="">
+    <div class="story-inner">
+      <h2 id="storyTitle">From me to you.</h2>
+      <p id="storySubtitle">This is how much I love you.</p>
+      <img src="assets/photos/centre.png" class="couple-art" alt="">
+      <div class="tiny-hearts">✦ ♡ ✦</div>
+
+      <div class="quote-card">
+        <div class="corner-heart">♥</div>
+        <div class="corner-flower-small">❀</div>
+        <p id="quote1"></p>
+        <p id="quote2"></p>
+        <div class="card-sparkle">✦</div>
+      </div>
+
+      <button class="continue-btn" id="openLockBtn">tap to open</button>
+    </div>
+  </section>
+
+  <!-- PASSCODE -->
+  <section id="lockPage" class="page">
+    <button class="close-btn" id="closeLock">×</button>
+    <div class="lock-wrap">
+      <div class="lock-circle">
+        <img src="assets/photos/locked.png" alt="lock">
+      </div>
+      <h2 id="lockTitle">Enter Passkey</h2>
+      <div class="dots" id="dots">
+        <i></i><i></i><i></i><i></i>
+      </div>
+
+      <div class="keypad">
+        <button data-key="1">1</button><button data-key="2">2</button><button data-key="3">3</button>
+        <button data-key="4">4</button><button data-key="5">5</button><button data-key="6">6</button>
+        <button data-key="7">7</button><button data-key="8">8</button><button data-key="9">9</button>
+        <span></span><button data-key="0">0</button><button id="clearKey">Clear</button>
+      </div>
+      <p class="error" id="error"></p>
+    </div>
+  </section>
+
+  <!-- LOADING -->
+  <section id="loadingPage" class="page">
+    <div class="loader-wrap">
+      <img src="assets/flowers/flower-2.png" class="loader-flower" alt="">
+      <p>LOADING</p>
+    </div>
+  </section>
+
+  <!-- MEMORIES -->
+  <section id="memoriesPage" class="page scroll-page">
+    <button class="back-btn" data-back="storyPage">‹ Back</button>
+    <div class="memories" id="memories"></div>
+    <div class="memory-note">
+      <p id="memoryText">Every memory with you is a little piece of my favourite story.</p>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section id="finalPage" class="page scroll-page">
+    <button class="back-btn" data-back="memoriesPage">‹ Back</button>
+    <div class="final-wrap">
+      <div class="final-heart">♡</div>
+      <h2 id="finalTitle">I will always love you</h2>
+      <p id="finalFrom">From, your forever</p>
+    </div>
+  </section>
+</main>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
