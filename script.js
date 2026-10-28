@@ -3,12 +3,12 @@
    ========================================================= */
 const CONFIG = {
   passkey: "1234",                 // 4-digit code to open the surprise
-  music: "music/song.mp3",         // your song file (put it inside the /music folder)
+  music: "song.mp3",         // your song file (put the file next to index.html)
   volume: 0.6,                     // 0 to 1
   hint: "",                        // optional hint shown on wrong code
-  photos: [                        // put your photos inside /images and list them here
-    "images/1.jpg", "images/2.jpg", "images/3.jpg", "images/4.jpg",
-    "images/5.jpg", "images/6.jpg", "images/7.jpg", "images/8.jpg"
+  photos: [                        // put your photos next to index.html and list them here
+    "1.jpg", "2.jpg", "3.jpg", "4.jpg",
+    "5.jpg", "6.jpg", "7.jpg", "8.jpg"
   ],
   letter:
 `To My Dearest,
@@ -24,7 +24,7 @@ Always yours.`
 
 /* ========================================================= */
 const $ = (s) => document.querySelector(s);
-const ROSES = ["assets/rose-pink.png", "assets/rose-white.png", "assets/rose-pink.png peach"];
+const ROSES = ["rose-pink.png", "rose-white.png", "rose-pink.png peach"];
 function makeRose(size, kind) {
   const [src, cls] = ROSES[kind % 3].split(" ");
   const img = new Image();
@@ -36,6 +36,7 @@ function makeRose(size, kind) {
 /* ---------- 1. Rose intro ---------- */
 function runIntro() {
   const intro = $("#intro");
+  intro.classList.add("active");
   const size = Math.max(70, Math.min(120, innerWidth / 10));
   const step = size * 0.62;
   const cols = Math.ceil(innerWidth / step) + 1;
@@ -182,4 +183,11 @@ $("#pkClose").onclick = () => ($("#passkey").hidden = true);
 $("#backBtn").onclick = () => { $("#memories").hidden = true; document.body.classList.remove("locked-scroll"); };
 
 buildKeypad();
-runIntro();
+/* gift tap -> music + roses fill the screen -> page opens */
+$("#giftBtn").onclick = () => {
+  $("#giftBtn").onclick = null;
+  startMusic();
+  $("#gift").classList.add("gone");
+  runIntro();
+  setTimeout(() => $("#gift").remove(), 1500);
+};

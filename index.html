@@ -11,19 +11,26 @@
 </head>
 <body class="locked-scroll">
 
+<!-- 0. Gift screen (first thing people see) -->
+<div id="gift" class="gift-screen">
+  <button id="giftBtn" class="gift-btn" aria-label="Tap to open"><img src="gift.png" alt="A gift"></button>
+  <p class="for">For you my girl</p>
+  <p class="tap">Tap to open</p>
+</div>
+
 <!-- 1. Rose intro -->
 <div id="intro" aria-hidden="true"></div>
 
 <!-- 2. Main page -->
 <main id="main">
   <div class="dried" aria-hidden="true">
-    <img class="d1" src="assets/dried-rose.png" alt="">
+    <img class="d1" src="dried-rose.png" alt="">
   </div>
 
   <section class="hero reveal">
     <h1>From me to you.</h1>
     <p class="sub">This is how much I love you.</p>
-    <img class="couple" src="assets/couple.png" alt="Illustration of a couple">
+    <img class="couple" src="couple.png" alt="Illustration of a couple">
     <div class="dots"><span>✦</span><span>♡</span><span>✦</span></div>
   </section>
 
@@ -37,7 +44,7 @@
 
   <section class="lock-section reveal">
     <button id="lockBtn" class="lock-btn" aria-label="Tap to open">
-      <img src="assets/lock.png" alt="">
+      <img src="lock.png" alt="">
     </button>
     <p class="tap">Tap to open</p>
   </section>
@@ -47,7 +54,7 @@
 <div id="passkey" class="overlay" hidden>
   <button class="close" id="pkClose" aria-label="Close">×</button>
   <div class="pk-box">
-    <div class="pk-lock"><img src="assets/lock.png" alt=""></div>
+    <div class="pk-lock"><img src="lock.png" alt=""></div>
     <h2>Enter Passkey</h2>
     <div class="pk-dots" id="pkDots"></div>
     <div class="keypad" id="keypad"></div>
