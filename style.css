@@ -20,20 +20,26 @@ body.locked-scroll{overflow:hidden}
 svg,img{display:block}
 [hidden]{display:none!important}
 
-/* ---------- Rose intro ---------- */
-#intro{
-  display:none;position:fixed;inset:0;z-index:100;background:#2a2410;overflow:hidden;
-  transition:opacity 1.2s ease, transform 1.4s ease;
-}
-#intro.done{opacity:0;transform:scale(1.15);pointer-events:none}
-#intro img{
-  position:absolute;
-  transform:translateY(-130vh) rotate(var(--r0));
-  animation:drop 1.4s cubic-bezier(.2,.8,.3,1) forwards;
-  animation-delay:var(--d);
-  filter:drop-shadow(0 3px 5px rgba(0,0,0,.35));
-}
+/* ---------- Rose intro (curtain) ---------- */
+#intro{display:none;position:fixed;inset:0;z-index:100;overflow:hidden;cursor:pointer}
+.panel{position:absolute;top:0;bottom:0;width:50%;overflow:hidden;background:#b0586f;
+  transition:transform 1.9s cubic-bezier(.76,0,.24,1)}
+.panel.l{left:0}.panel.r{right:0}
+.pin{position:absolute;top:0;height:100%;width:100vw}
+.panel.l .pin{left:0}.panel.r .pin{left:-50vw}
+.pin img{position:absolute;transform:translateY(-130vh) rotate(var(--r0));
+  animation:drop 1.4s cubic-bezier(.2,.8,.3,1) forwards;animation-delay:var(--d);
+  filter:drop-shadow(0 3px 6px rgba(0,0,0,.4));pointer-events:none}
 @keyframes drop{to{transform:translateY(0) rotate(var(--r1))}}
+#intro.open{cursor:default;pointer-events:none}
+#intro.open .panel.l{transform:translateX(-101%);box-shadow:10px 0 40px rgba(0,0,0,.55)}
+#intro.open .panel.r{transform:translateX(101%);box-shadow:-10px 0 40px rgba(0,0,0,.55)}
+.curtain-hint{position:absolute;left:50%;top:50%;z-index:5;transform:translate(-50%,-50%);padding:.8rem 1.8rem;border-radius:99px;
+  background:rgba(34,18,14,.82);color:var(--cream);font-family:'Dancing Script',cursive;font-size:1.7rem;
+  box-shadow:0 0 30px rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .8s}
+#intro.ready .curtain-hint{opacity:1;animation:hintPulse 1.8s ease-in-out infinite}
+#intro.open .curtain-hint{opacity:0;animation:none}
+@keyframes hintPulse{50%{transform:translate(-50%,-50%) scale(1.07)}}
 
 /* ---------- Main ---------- */
 main{
@@ -96,7 +102,7 @@ mark{background:none;padding:0 .3em;border-radius:4px;font-style:italic}
   background:rgba(0,0,0,.45);color:var(--green);font-size:1.4rem;line-height:1}
 
 .pk-box{text-align:center}
-.pk-lock{width:70px;height:70px;margin:0 auto 1rem;border-radius:50%;padding:12px;box-shadow:0 0 0 1px rgba(255,200,150,.12),0 0 30px rgba(255,170,110,.15)}
+.pk-lock{position:relative;width:70px;height:70px;margin:0 auto 1.6rem;border-radius:50%;padding:12px;box-shadow:0 0 0 1px rgba(255,200,150,.12),0 0 30px rgba(255,170,110,.15)}
 .pk-lock img{width:100%;height:100%;object-fit:contain}
 .pk-box h2{font-family:'Dancing Script',cursive;font-size:1.9rem;color:var(--peach);text-shadow:0 0 14px rgba(242,165,142,.5)}
 .pk-dots{display:flex;gap:12px;justify-content:center;margin:1.1rem 0 1.8rem}
@@ -112,11 +118,12 @@ mark{background:none;padding:0 .3em;border-radius:4px;font-style:italic}
 .keypad button:active{background:#bbb;color:#222}
 .keypad .clr{grid-column:3;font-size:.7rem;color:#e8b266}
 .keypad .zero{grid-column:2}
+.pk-hint.ok{color:#7fd29b}
 .pk-hint{margin-top:1.2rem;min-height:1.2rem;font-family:'Caveat',cursive;color:#c0475a}
 
 /* loading */
-.wreath{position:relative;width:96px;height:96px;animation:spin 3.2s linear infinite}
-.wreath img{position:absolute;width:34px;height:34px;left:31px;top:31px}
+.wreath{position:relative;width:160px;height:160px;animation:spin 3.2s linear infinite}
+.wreath img{position:absolute;width:62px;height:auto;left:49px;top:49px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
 /* peach rose = pink rose hue-shifted */
 .peach{filter:hue-rotate(50deg) saturate(.95) brightness(.96)}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -126,13 +133,21 @@ mark{background:none;padding:0 .3em;border-radius:4px;font-style:italic}
 .back{position:fixed;top:16px;right:20px;z-index:70;border:0;cursor:pointer;padding:9px 16px;border-radius:99px;
   background:rgba(20,14,10,.8);color:var(--cream);font-family:'Cormorant Garamond',serif;font-size:.95rem}
 .back span{font-size:1.1rem;margin-right:4px}
-.gallery{position:relative;width:100%;max-width:1000px;padding:50px 16px 30px;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:26px 22px;align-items:start}
-.polaroid{background:#241410;padding:9px 9px 34px;box-shadow:0 8px 22px rgba(0,0,0,.5);
-  transform:rotate(var(--rot)) translateY(30px);opacity:0;transition:opacity .9s ease,transform .9s ease}
-.polaroid.in{opacity:1;transform:rotate(var(--rot))}
-.polaroid:hover{transform:rotate(0) scale(1.04);z-index:2}
-.polaroid img,.polaroid .ph{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:linear-gradient(135deg,#5a3a30,#2e1c1a)}
+.gallery{position:relative;width:100%;max-width:1000px;margin:0 auto;padding:0 16px;min-height:300px}
+.pw{position:absolute}
+.fly{opacity:0;transform:translate(var(--fx),var(--fy)) rotate(var(--fr)) scale(.35);
+  transition:opacity .8s ease,transform 1.3s cubic-bezier(.2,1.25,.35,1)}
+.pw.in .fly{opacity:1;transform:none}
+.pw:hover{z-index:9}
+.pw:hover .fly{transform:scale(1.08)}
+.polaroid{background:#f3ebe0;padding:8px 8px 30px;border-radius:3px;box-shadow:0 12px 28px rgba(0,0,0,.55);
+  transform:rotate(var(--rot));animation:floaty var(--dur) ease-in-out var(--del) infinite}
+.pw:hover .polaroid{animation-play-state:paused;box-shadow:0 18px 40px rgba(0,0,0,.7),0 0 26px rgba(244,182,196,.3)}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--rot))}50%{transform:translateY(-14px) rotate(calc(var(--rot) + 2.2deg))}}
+.polaroid img,.polaroid .ph{width:100%;aspect-ratio:1/var(--ar);object-fit:cover;display:block;background:linear-gradient(135deg,#5a3a30,#2e1c1a)}
+.polaroid .ph{display:grid;place-items:center;color:#c98a8a;font-size:2rem}
+.rise{position:fixed;bottom:-30px;z-index:65;pointer-events:none;color:#e0526a;opacity:0;animation:rise var(--t) linear forwards}
+@keyframes rise{10%{opacity:.8}to{opacity:0;transform:translateY(-110vh) translateX(var(--sx)) rotate(40deg)}}
 .polaroid .ph{display:grid;place-items:center;color:#c98a8a;font-size:2rem}
 
 .letter-wrap{width:100%;display:flex;justify-content:center;padding:6vh 16px}
@@ -153,7 +168,6 @@ mark{background:none;padding:0 .3em;border-radius:4px;font-style:italic}
 @media (max-width:560px){
   .keypad{grid-template-columns:repeat(3,52px);gap:14px}
   .keypad button{width:52px;height:52px}
-  .gallery{grid-template-columns:repeat(2,1fr)}
 }
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
 
@@ -176,3 +190,12 @@ mark{background:none;padding:0 .3em;border-radius:4px;font-style:italic}
 .gift-screen .tap{margin-top:.6rem}
 
 #intro.active{display:block}
+
+/* unlock effect */
+.pk-lock.unlocked{animation:unlock 1s ease forwards;box-shadow:0 0 0 1px rgba(127,210,155,.5),0 0 44px rgba(127,210,155,.55)}
+.pk-lock.unlocked::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid #7fd29b;animation:ring 1.1s ease-out forwards}
+@keyframes unlock{0%{transform:scale(1) rotate(0)}20%{transform:scale(1.15) rotate(-16deg)}45%{transform:scale(1.25) rotate(14deg)}70%{transform:scale(1.3) rotate(-6deg)}100%{transform:scale(1.3) rotate(0)}}
+@keyframes ring{from{transform:scale(.8);opacity:1}to{transform:scale(2.6);opacity:0}}
+.pk-box h2.ok{color:#8fe0a8;text-shadow:0 0 16px rgba(127,210,155,.6)}
+
+.overlay.scroll>*{flex-shrink:0}
