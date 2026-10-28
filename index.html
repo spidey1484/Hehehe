@@ -19,7 +19,11 @@
 </div>
 
 <!-- 1. Rose intro -->
-<div id="intro" aria-hidden="true"></div>
+<div id="intro" aria-hidden="true">
+  <div class="panel l"><div class="pin"></div></div>
+  <div class="panel r"><div class="pin"></div></div>
+  <p class="curtain-hint">♡ Tap to open ♡</p>
+</div>
 
 <!-- 2. Main page -->
 <main id="main">
@@ -55,7 +59,7 @@
   <button class="close" id="pkClose" aria-label="Close">×</button>
   <div class="pk-box">
     <div class="pk-lock"><img src="lock.png" alt=""></div>
-    <h2>Enter Passkey</h2>
+    <h2 id="pkTitle">Enter Passkey</h2>
     <div class="pk-dots" id="pkDots"></div>
     <div class="keypad" id="keypad"></div>
     <p class="pk-hint" id="pkHint"></p>
