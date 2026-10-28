@@ -2,51 +2,54 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2a2410">
 <title>From me to you</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@500;700&family=Kalam:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body class="locked-scroll">
 
 <!-- 0. Gift screen (first thing people see) -->
 <div id="gift" class="gift-screen">
-  <button id="giftBtn" class="gift-btn" aria-label="Tap to open"><img src="gift.png" alt="A gift"></button>
+  <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+  <button id="giftBtn" class="gift-btn" aria-label="Tap to open your gift">
+    <span class="halo"></span>
+    <img src="gift.png" alt="A gift">
+  </button>
   <p class="for">For you my girl</p>
   <p class="tap">Tap to open</p>
 </div>
 
-<!-- 1. Rose intro -->
+<!-- 1. Rose curtain: roses cover the screen, tap -> it opens like a curtain -->
 <div id="intro" aria-hidden="true">
   <div class="panel l"><div class="pin"></div></div>
   <div class="panel r"><div class="pin"></div></div>
   <p class="curtain-hint">♡ Tap to open ♡</p>
 </div>
 
+<div class="dried" aria-hidden="true"><img src="dried-rose.png" alt=""></div>
+
 <!-- 2. Main page -->
 <main id="main">
-  <div class="dried" aria-hidden="true">
-    <img class="d1" src="dried-rose.png" alt="">
-  </div>
-
-  <section class="hero reveal">
-    <h1>From me to you.</h1>
+  <section class="hero" id="hero">
+    <h1 id="title">From me to you.</h1>
     <p class="sub">This is how much I love you.</p>
     <img class="couple" src="couple.png" alt="Illustration of a couple">
     <div class="dots"><span>✦</span><span>♡</span><span>✦</span></div>
   </section>
 
-  <section class="poem reveal">
+  <section class="poem" id="poem">
     <div class="poem-card">
-      <p>In your <mark class="m-rose">smile</mark>, I found my <mark class="m-green">peace</mark>.</p>
-      <p>In your <mark class="m-red">love</mark>, I found my <mark class="m-gold">home</mark>.</p>
+      <p class="line" style="--n:0">In your <mark class="m-rose">smile</mark>, I found my <mark class="m-green">peace</mark>.</p>
+      <p class="line" style="--n:1">In your <mark class="m-red">love</mark>, I found my <mark class="m-gold">home</mark>.</p>
       <i class="fl f1">♥</i><i class="fl f2">●</i><i class="fl f3">♥</i><i class="fl f4">✦</i>
     </div>
   </section>
 
-  <section class="lock-section reveal">
+  <section class="lock-section" id="lockSection">
     <button id="lockBtn" class="lock-btn" aria-label="Tap to open">
       <img src="lock.png" alt="">
     </button>
@@ -54,7 +57,7 @@
   </section>
 </main>
 
-<!-- 3. Passkey modal -->
+<!-- 3. Passkey -->
 <div id="passkey" class="overlay" hidden>
   <button class="close" id="pkClose" aria-label="Close">×</button>
   <div class="pk-box">
@@ -84,13 +87,13 @@
 
   <section class="finale">
     <div class="heart">♡</div>
-    <h2 class="always">I will always love you</h2>
+    <h2 class="always" id="always">I will always love you</h2>
     <p class="from">From, your forever</p>
   </section>
 </div>
 
 <button id="muteBtn" class="mute" aria-label="Music on/off" hidden>♪</button>
 
-<script src="script.js"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>
