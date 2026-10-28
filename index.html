@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From me to you</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@500;700&family=Kalam:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="locked-scroll">
+
+<!-- 1. Rose intro -->
+<div id="intro" aria-hidden="true"></div>
+
+<!-- 2. Main page -->
+<main id="main">
+  <div class="dried" aria-hidden="true">
+    <img class="d1" src="assets/dried-rose.png" alt="">
+  </div>
+
+  <section class="hero reveal">
+    <h1>From me to you.</h1>
+    <p class="sub">This is how much I love you.</p>
+    <img class="couple" src="assets/couple.png" alt="Illustration of a couple">
+    <div class="dots"><span>✦</span><span>♡</span><span>✦</span></div>
+  </section>
+
+  <section class="poem reveal">
+    <div class="poem-card">
+      <p>In your <mark class="m-rose">smile</mark>, I found my <mark class="m-green">peace</mark>.</p>
+      <p>In your <mark class="m-red">love</mark>, I found my <mark class="m-gold">home</mark>.</p>
+      <i class="fl f1">♥</i><i class="fl f2">●</i><i class="fl f3">♥</i><i class="fl f4">✦</i>
+    </div>
+  </section>
+
+  <section class="lock-section reveal">
+    <button id="lockBtn" class="lock-btn" aria-label="Tap to open">
+      <img src="assets/lock.png" alt="">
+    </button>
+    <p class="tap">Tap to open</p>
+  </section>
+</main>
+
+<!-- 3. Passkey modal -->
+<div id="passkey" class="overlay" hidden>
+  <button class="close" id="pkClose" aria-label="Close">×</button>
+  <div class="pk-box">
+    <div class="pk-lock"><img src="assets/lock.png" alt=""></div>
+    <h2>Enter Passkey</h2>
+    <div class="pk-dots" id="pkDots"></div>
+    <div class="keypad" id="keypad"></div>
+    <p class="pk-hint" id="pkHint"></p>
+  </div>
+</div>
+
+<!-- 4. Loading -->
+<div id="loading" class="overlay" hidden>
+  <div class="wreath" id="wreath"></div>
+  <p class="loading-txt">LOADING</p>
+</div>
+
+<!-- 5. Memories -->
+<div id="memories" class="overlay scroll" hidden>
+  <button class="back" id="backBtn"><span>‹</span> Back</button>
+
+  <section class="gallery" id="gallery"></section>
+
+  <section class="letter-wrap">
+    <article class="letter" id="letter"><p id="letterText"></p></article>
+  </section>
+
+  <section class="finale">
+    <div class="heart">♡</div>
+    <h2 class="always">I will always love you</h2>
+    <p class="from">From, your forever</p>
+  </section>
+</div>
+
+<button id="muteBtn" class="mute" aria-label="Music on/off" hidden>♪</button>
+
+<script src="script.js"></script>
+</body>
+</html>
