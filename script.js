@@ -3,7 +3,7 @@
    ========================================================= */
 const CONFIG = {
   passkey: "0902",                 // 4-digit code to open the surprise
-  music: "2fe4-7031-4cb2-872c-8370d7f6e37d.mp3",               // your song (upload it next to index.html)
+  music: "song.mp3",               // your song (upload it next to index.html)
   volume: 0.6,                     // 0 to 1
   hint: "",                        // optional hint shown on a wrong code
   photos: [                        // upload your photos next to index.html and list them here
